@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 @Entity
 @Table(name="producto")
@@ -16,8 +18,9 @@ public class Producto implements Serializable{
 	private int idproducto;
 	@Column(name = "desproducto")
 	private String desproducto;
-	@Column(name = "idcategoria")
-	private int idcategoria;	
+	@ManyToOne
+	@JoinColumn(name = "idcategoria")
+	private Categoria cat;
 	@Column(name = "precioProducto")
 	private double precioProducto;		
 	@Column(name = "stock_act")
@@ -36,11 +39,11 @@ public class Producto implements Serializable{
 	public void setDesproducto(String desproducto) {
 		this.desproducto = desproducto;
 	}
-	public int getIdcategoria() {
-		return idcategoria;
+	public Categoria getCat() {
+		return cat;
 	}
-	public void setIdcategoria(int idcategoria) {
-		this.idcategoria = idcategoria;
+	public void setCat(Categoria cat) {
+		this.cat = cat;
 	}
 	public double getPrecioProducto() {
 		return precioProducto;
@@ -59,7 +62,6 @@ public class Producto implements Serializable{
 	}
 	public void setStockmin(int stockmin) {
 		this.stockmin = stockmin;
-	}		
-
+	}
 	
 }

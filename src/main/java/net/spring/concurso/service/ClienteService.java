@@ -5,4 +5,5 @@ import net.spring.concurso.entity.Cliente;
 
 public interface ClienteService {
 	public List<Cliente> listAll();
+	public Cliente loginCliente(String email, String pass);
 }

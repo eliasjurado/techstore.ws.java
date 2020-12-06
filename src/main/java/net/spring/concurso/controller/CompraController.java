@@ -10,29 +10,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import net.spring.concurso.entity.Cliente;
-import net.spring.concurso.service.ClienteService;
+import net.spring.concurso.entity.CompraCabecera;
+import net.spring.concurso.entity.CompraDetalle;
+import net.spring.concurso.entity.Producto;
+import net.spring.concurso.service.CompraService;
 
 @RestController
-@RequestMapping(value = "/cliente")
-public class ClienteController {
+@RequestMapping(value = "/compra")
+public class CompraController {
 
 	@Autowired
-	private ClienteService clienteService;
+	private CompraService compraService;
 
-	@GetMapping(path = "/listCliente")
+	@GetMapping(path = "/admListCompra")
 	@ResponseBody
-	public List<Cliente> listCliente() {
-		return clienteService.listAll();
+	public List<CompraDetalle> admListCompra() {
+		return compraService.admlistAll();
 	}
 	
-	@GetMapping(path ="/login/{email}/{pass}" )
+	@GetMapping(path ="/listById/{id}" )
 	@ResponseBody
-	public Cliente iniciar(@PathVariable("email") String email, 
-						   @PathVariable("pass") String pass){
-		Cliente bean=null;
-		bean=clienteService.loginCliente(email, pass);
-		return bean;
+	public List<CompraDetalle> listById(@PathVariable("id") int id){
+		List<CompraDetalle> list=null;
+		list=compraService.listById(id);
+		return list;
 	}
 
 }

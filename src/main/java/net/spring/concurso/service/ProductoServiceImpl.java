@@ -16,5 +16,15 @@ public class ProductoServiceImpl implements  ProductoService{
 		return productoDAO.listAll();
 	}
 
+	@Override
+	public List<Producto> admListAll() {
+		return productoDAO.admListAll();
+	}
+
+	@Override
+	public List<Producto> listById(int id) {
+		return productoDAO.listById(id);
+	}
+
 
 }

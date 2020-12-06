@@ -16,5 +16,10 @@ public class ClienteServiceImpl implements  ClienteService{
 		return clienteDAO.listAll();
 	}
 
+	@Override
+	public Cliente loginCliente(String email, String pass) {
+		return clienteDAO.loginCliente(email, pass);
+	}
+
 
 }

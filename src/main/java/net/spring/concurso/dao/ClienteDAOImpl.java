@@ -22,7 +22,7 @@ public class ClienteDAOImpl implements ClienteDAO{
 		Query query=null;
 		Session session=factory.getCurrentSession();
 		try {
-			String hql="select u from Cliente u";
+			String hql="select u.idcliente,u.nomcliente,u.apecliente,u.dnicliente,u.tlfcliente, u.direccliente,(select d.nomdistrito from Distrito d where d.iddistrito=u.iddistrito),  u.emailcliente, u.passcliente from Cliente u";
 			query=session.createQuery(hql);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -30,6 +30,24 @@ public class ClienteDAOImpl implements ClienteDAO{
 		return query.getResultList();
 	}
 	
-	
-
+	@Transactional(readOnly=true)
+	@Override
+	public Cliente loginCliente(String email, String pass) {
+		Session session=factory.getCurrentSession();
+		Cliente bean=null;
+		Query query=null;
+		try {
+			String hql="select u from Cliente u where u.emailcliente=?1 and u.passcliente=?2";
+			query=session.createQuery(hql);
+			query.setParameter(1, email);
+			query.setParameter(2, pass);
+			List<Cliente> lista=query.getResultList();
+			//validar
+			if(!lista.isEmpty())
+				bean=(Cliente) query.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bean;
+	}
 }
