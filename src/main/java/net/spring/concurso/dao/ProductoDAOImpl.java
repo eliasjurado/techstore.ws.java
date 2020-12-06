@@ -23,7 +23,7 @@ public class ProductoDAOImpl implements ProductoDAO{
 		Query query=null;
 		Session session=factory.getCurrentSession();
 		try {
-			String hql="select u.idproducto, u.desproducto, u.precioProducto, u.idcategoria,  (select c.nomcategoria from Categoria c where c.idcategoria=u.idcategoria), u.stockact from Producto u";
+			String hql="select u.idproducto, u.desproducto, u.precioProducto, u.cat.idcategoria, u.cat.nomcategoria, u.stockact from Producto u";
 			query=session.createQuery(hql);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -38,7 +38,7 @@ public class ProductoDAOImpl implements ProductoDAO{
 		Query query=null;
 		Session session=factory.getCurrentSession();
 		try {
-			String hql="select u.idproducto, u.desproducto, u.precioProducto, u.stockact, u.stockmin, (select c.nomcategoria from Categoria c where c.idcategoria=u.idcategoria) from Producto u";
+			String hql="select u.idproducto, u.desproducto, u.precioProducto, u.stockact, u.stockmin, u.cat.nomcategoria from Producto u";
 			query=session.createQuery(hql);
 		} catch (Exception e) {
 			e.printStackTrace();
