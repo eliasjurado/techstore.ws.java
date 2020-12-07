@@ -30,6 +30,39 @@ public class CargoDAOImpl implements CargoDAO{
 		return query.getResultList();
 	}
 	
+	@Transactional
+	@Override
+	public void save(Cargo bean) {
+		Session session=factory.getCurrentSession();
+		try {
+			session.save(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Transactional
+	@Override
+	public void update(Cargo bean) {
+		Session session=factory.getCurrentSession();
+		try {
+			session.update(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}	
+	
+	@Transactional
+	@Override
+	public void delete(int cod) {
+		Session session=factory.getCurrentSession();
+		try {
+			Cargo bean=session.get(Cargo.class, cod);
+			session.delete(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 
 }

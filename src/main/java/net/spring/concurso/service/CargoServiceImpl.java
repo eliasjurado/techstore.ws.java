@@ -16,5 +16,18 @@ public class CargoServiceImpl implements CargoService{
 		return cargoDAO.listAll();
 	}
 
+	@Override
+	public void save(Cargo bean) {
+		cargoDAO.save(bean);
+	}
 
+	@Override
+	public void update(Cargo bean) {
+		cargoDAO.update(bean);	
+	}
+
+	@Override
+	public void delete(int cod) {
+		cargoDAO.delete(cod);
+	}
 }

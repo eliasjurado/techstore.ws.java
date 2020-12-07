@@ -26,5 +26,19 @@ public class ProductoServiceImpl implements  ProductoService{
 		return productoDAO.listById(id);
 	}
 
+	@Override
+	public void save(Producto bean) {
+		productoDAO.save(bean);
+	}
+
+	@Override
+	public void update(Producto bean) {
+		productoDAO.update(bean);
+	}
+
+	@Override
+	public void delete(int cod) {
+		productoDAO.delete(cod);
+	}
 
 }

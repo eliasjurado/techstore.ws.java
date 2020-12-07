@@ -17,4 +17,27 @@ public class EmpleadoServiceImpl implements  EmpleadoService{
 	}
 
 
+	@Override
+	public void save(Empleado bean) {
+		empleadoDAO.save(bean);
+	}
+
+	@Override
+	public void update(Empleado bean) {
+		empleadoDAO.update(bean);	
+	}
+
+	@Override
+	public void delete(int cod) {
+		empleadoDAO.delete(cod);
+	}
+
+
+	@Override
+	public Empleado loginEmpleado(String email, String pass) {
+		return empleadoDAO.loginEmpleado(email, pass);
+	}
+
+
+
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import net.spring.concurso.entity.Categoria;
 import net.spring.concurso.entity.Cliente;
 
 @Repository
@@ -49,5 +50,39 @@ public class ClienteDAOImpl implements ClienteDAO{
 			e.printStackTrace();
 		}
 		return bean;
+	}
+
+	@Transactional
+	@Override
+	public void save(Cliente bean) {
+		Session session=factory.getCurrentSession();
+		try {
+			session.save(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Transactional
+	@Override
+	public void update(Cliente bean) {
+		Session session=factory.getCurrentSession();
+		try {
+			session.update(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}	
+	
+	@Transactional
+	@Override
+	public void delete(int cod) {
+		Session session=factory.getCurrentSession();
+		try {
+			Cliente bean=session.get(Cliente.class, cod);
+			session.delete(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

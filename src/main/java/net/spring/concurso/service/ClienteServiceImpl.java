@@ -21,5 +21,20 @@ public class ClienteServiceImpl implements  ClienteService{
 		return clienteDAO.loginCliente(email, pass);
 	}
 
+	@Override
+	public void save(Cliente bean) {
+		clienteDAO.save(bean);
+	}
+
+	@Override
+	public void update(Cliente bean) {
+		clienteDAO.update(bean);	
+	}
+
+	@Override
+	public void delete(int cod) {
+		clienteDAO.delete(cod);
+	}
+
 
 }

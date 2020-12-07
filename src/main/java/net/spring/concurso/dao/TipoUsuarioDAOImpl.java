@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import net.spring.concurso.entity.Producto;
 import net.spring.concurso.entity.TipoUsuario;
 
 @Repository
@@ -29,7 +30,37 @@ public class TipoUsuarioDAOImpl implements TipoUsuarioDAO{
 		}
 		return query.getResultList();
 	}
+	@Transactional
+	@Override
+	public void save(TipoUsuario bean) {
+		Session session=factory.getCurrentSession();
+		try {
+			session.save(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
+	@Transactional
+	@Override
+	public void update(TipoUsuario bean) {
+		Session session=factory.getCurrentSession();
+		try {
+			session.update(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}	
 	
-
+	@Transactional
+	@Override
+	public void delete(int cod) {
+		Session session=factory.getCurrentSession();
+		try {
+			TipoUsuario bean=session.get(TipoUsuario.class, cod);
+			session.delete(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

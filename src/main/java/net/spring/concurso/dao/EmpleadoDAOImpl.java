@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import net.spring.concurso.entity.Cliente;
+import net.spring.concurso.entity.Distrito;
 import net.spring.concurso.entity.Empleado;
 
 @Repository
@@ -33,7 +35,60 @@ public class EmpleadoDAOImpl implements EmpleadoDAO{
 		}
 		return query.getResultList();
 	}
+
+	@Transactional
+	@Override
+	public void save(Empleado bean) {
+		Session session=factory.getCurrentSession();
+		try {
+			session.save(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
+	@Transactional
+	@Override
+	public void update(Empleado bean) {
+		Session session=factory.getCurrentSession();
+		try {
+			session.update(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}	
 	
+	@Transactional
+	@Override
+	public void delete(int cod) {
+		Session session=factory.getCurrentSession();
+		try {
+			Empleado bean=session.get(Empleado.class, cod);
+			session.delete(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Transactional(readOnly=true)
+	@Override
+	public Empleado loginEmpleado(String email, String pass) {
+		Session session=factory.getCurrentSession();
+		Empleado bean=null;
+		Query query=null;
+		try {
+			String hql="select u from Empleado u where u.emailempleado=?1 and u.passempleado=?2";
+			query=session.createQuery(hql);
+			query.setParameter(1, email);
+			query.setParameter(2, pass);
+			List<Empleado> lista=query.getResultList();
+			//validar
+			if(!lista.isEmpty())
+				bean=(Empleado) query.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return bean;
+	}
 
 }

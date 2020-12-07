@@ -5,11 +5,14 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import net.spring.concurso.entity.Cliente;
 import net.spring.concurso.entity.CompraCabecera;
 import net.spring.concurso.entity.CompraDetalle;
 import net.spring.concurso.entity.Producto;
@@ -34,6 +37,21 @@ public class CompraController {
 		List<CompraDetalle> list=null;
 		list=compraService.listById(id);
 		return list;
+	}
+	//registrar 
+	@PostMapping(path = "/saveCompraCab")
+	public void saveCompraCab(@RequestBody CompraCabecera bean) {
+		compraService.saveCab(bean);	
+	}
+	//actualizar 
+	@PutMapping(path = "/updateCompraCab")
+	public void updateCompraCab(@RequestBody CompraCabecera bean) {
+		compraService.updateCab(bean);	
+	}
+	//registrar 
+	@PostMapping(path = "/saveCompraDet")
+	public void saveCompraDet(@RequestBody CompraDetalle bean) {
+		compraService.saveDet(bean);	
 	}
 
 }

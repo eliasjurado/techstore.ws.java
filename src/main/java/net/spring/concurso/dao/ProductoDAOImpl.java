@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import net.spring.concurso.entity.Cliente;
 import net.spring.concurso.entity.Producto;
 
 @Repository
@@ -61,5 +60,39 @@ public class ProductoDAOImpl implements ProductoDAO{
 			e.printStackTrace();
 		}
 		return lista;
+	}
+
+	@Transactional
+	@Override
+	public void save(Producto bean) {
+		Session session=factory.getCurrentSession();
+		try {
+			session.save(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Transactional
+	@Override
+	public void update(Producto bean) {
+		Session session=factory.getCurrentSession();
+		try {
+			session.update(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}	
+	
+	@Transactional
+	@Override
+	public void delete(int cod) {
+		Session session=factory.getCurrentSession();
+		try {
+			Producto bean=session.get(Producto.class, cod);
+			session.delete(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

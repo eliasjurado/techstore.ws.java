@@ -22,5 +22,20 @@ public class CompraServiceImpl implements  CompraService{
 		return compraDAO.listById(id);
 	}
 
+	@Override
+	public void saveCab(CompraCabecera bean) {
+		compraDAO.saveCab(bean);
+	}
+
+	@Override
+	public void updateCab(CompraCabecera bean) {
+		compraDAO.updateCab(bean);
+	}
+
+	@Override
+	public void saveDet(CompraDetalle bean) {
+		compraDAO.saveDet(bean);
+	}
+
 
 }

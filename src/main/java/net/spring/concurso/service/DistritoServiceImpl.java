@@ -16,5 +16,19 @@ public class DistritoServiceImpl implements DistritoService{
 		return distritoDAO.listAll();
 	}
 
+	@Override
+	public void save(Distrito bean) {
+		distritoDAO.save(bean);
+	}
+
+	@Override
+	public void update(Distrito bean) {
+		distritoDAO.update(bean);	
+	}
+
+	@Override
+	public void delete(int cod) {
+		distritoDAO.delete(cod);
+	}
 
 }

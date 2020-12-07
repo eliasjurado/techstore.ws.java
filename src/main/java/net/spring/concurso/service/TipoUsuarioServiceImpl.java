@@ -16,5 +16,20 @@ public class TipoUsuarioServiceImpl implements TipoUsuarioService{
 		return tipoUsuarioDAO.listAll();
 	}
 
+	@Override
+	public void save(TipoUsuario bean) {
+		tipoUsuarioDAO.save(bean);
+	}
+
+	@Override
+	public void update(TipoUsuario bean) {
+		tipoUsuarioDAO.update(bean);
+	}
+
+	@Override
+	public void delete(int cod) {
+		tipoUsuarioDAO.delete(cod);
+	}
+
 
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import net.spring.concurso.entity.CompraCabecera;
 import net.spring.concurso.entity.CompraDetalle;
 
 @Repository
@@ -45,6 +46,36 @@ public class CompraDAOImpl implements CompraDAO{
 			e.printStackTrace();
 		}
 		return lista;
+	}
+
+	@Override
+	public void saveCab(CompraCabecera bean) {
+		Session session=factory.getCurrentSession();
+		try {
+			session.save(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void updateCab(CompraCabecera bean) {
+		Session session=factory.getCurrentSession();
+		try {
+			session.update(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void saveDet(CompraDetalle bean) {
+		Session session=factory.getCurrentSession();
+		try {
+			session.save(bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
